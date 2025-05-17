@@ -21,7 +21,7 @@ def enemy_movement(enemy_list):
         enemy_rect.x -= 3
 
         if enemy_rect.right > -100:
-            if enemy_rect.bottom == 370:
+            if enemy_rect.bottom == 360:
                 current_surf = flies[fly_index]
             elif enemy_rect.bottom == 420:
                 current_surf = skeleton_list[skeleton_index]
@@ -39,8 +39,8 @@ def player_movement():
     if player_rect.bottom<=400:
         player_surf=player_jump
     else:
-        player_index+=0.5
-        if player_index>=2 :
+        player_index+=0.13
+        if player_index>=len(player_walk_list) :
             player_index=0
         player_surf=player_walk_list[int(player_index)]
 
@@ -52,14 +52,14 @@ pygame.init()
 screen=pygame.display.set_mode((640,480))
 pygame.display.set_caption("My_first_game")
 clock=pygame.time.Clock()
-text_font=pygame.font.Font("fonts/CrotahFreeVersionItalic-z8Ev3.ttf",40)
+text_font=pygame.font.Font("assets/fonts/CrotahFreeVersionItalic-z8Ev3.ttf",40)
 
 
 is_game_active=False
  
 
-ground_surface=pygame.image.load("graphics/ground.jpg")
-sky_surface=pygame.image.load("graphics/sky_image.jpg")
+ground_surface=pygame.image.load("assets/graphics/ground.jpg")
+sky_surface=pygame.image.load("assets/graphics/sky_image.jpg")
 
 
 
@@ -71,8 +71,8 @@ restart_text_surface=text_font.render("Press Space To Restart",True,(255,0,0))
 restart_text_surface_rect=restart_text_surface.get_rect(center=(320,300))
 
 #Düşman işlemleri
-fly1=pygame.transform.scale(pygame.image.load("graphics/Fly1.png"),(50,36))
-fly2=pygame.transform.scale(pygame.image.load("graphics/Fly2.png"),(50,36))
+fly1=pygame.transform.scale(pygame.image.load("assets/graphics/Fly1.png"),(50,36))
+fly2=pygame.transform.scale(pygame.image.load("assets/graphics/Fly2.png"),(50,36))
 
 flies=[fly1,fly2]
 fly_index=0
@@ -80,9 +80,9 @@ enemy_surface=flies[fly_index]
 
 
 
-skeleton1=pygame.image.load("graphics/skeleton1.png")
-skeleton2=pygame.image.load("graphics/skeleton2.png")
-skeleton3=pygame.image.load("graphics/skeleton3.png")
+skeleton1=pygame.image.load("assets/graphics/skeleton1.png")
+skeleton2=pygame.image.load("assets/graphics/skeleton2.png")
+skeleton3=pygame.image.load("assets/graphics/skeleton3.png")
 skeleton_list=[skeleton1,skeleton2,skeleton3,]
 skeleton_index=0
 enemy_surface2=skeleton_list[skeleton_index]
@@ -95,21 +95,22 @@ enemy_list=[]
 
 
 #Karakter işlemleri
-player_walk_1=pygame.image.load("graphics/character2.png")
-player_walk_2=pygame.image.load("graphics/character1.png")
+player_walk_1=pygame.image.load("assets/character_sprite/character_walk_2.png")
+player_walk_2=pygame.image.load("assets/character_sprite/character_walk_3.png")
+player_stable=pygame.image.load("assets/character_sprite/character_walk_1.png")
 
 
-player_walk_list=[player_walk_1,player_walk_2]
+player_walk_list=[player_walk_1,player_stable,player_walk_2,player_stable]
 player_index=0
-player_jump=pygame.image.load("graphics/player_jump.png")
+player_jump=pygame.image.load("assets/character_sprite/character_walk_2.png")
 player_surf=player_walk_list[player_index]
 player_rect=player_surf.get_rect(midleft=(20,400))
-
-
-
-
-
 player_gravity=0
+
+
+
+
+
 ground_level=420
 top_level=0
 start_time=0
@@ -117,7 +118,7 @@ map_length_min=0
 map_length_max=480
 
 #Başlangıç Ekranı
-start_screen_surface=pygame.transform.smoothscale((pygame.image.load("graphics/start_screen_final.png")),(640,480))
+start_screen_surface=pygame.transform.smoothscale((pygame.image.load("assets/graphics/start_screen_final.png")),(640,480))
 start_screen_surface_rect=start_screen_surface.get_rect(topleft=(0,0))
 
 
@@ -151,7 +152,7 @@ while True:
                 random_number=randint(0,1)
                 if random_number==0:
                     new_enemy=enemy_surfaces[random_number]
-                    new_enemy_rect=new_enemy.get_rect(midbottom=(640,370))
+                    new_enemy_rect=new_enemy.get_rect(midbottom=(640,360))
                 else:
                     new_enemy=enemy_surfaces[random_number]
                     new_enemy_rect=new_enemy.get_rect(midbottom=(640,420))
