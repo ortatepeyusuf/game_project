@@ -43,7 +43,7 @@ def player_movement():
 
 pygame.init()
 screen=pygame.display.set_mode((640,480))
-pygame.display.set_caption("My_first_game")
+pygame.display.set_caption("GAME_SCREEN")
 clock=pygame.time.Clock()
 text_font=pygame.font.Font("assets/fonts/CrotahFreeVersionItalic-z8Ev3.ttf",40)
 
