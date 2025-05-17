@@ -3,7 +3,7 @@ import sys
 from random import randint
 
 
-#karakter animasyonu düzenlenecek
+
 
 
 def calculate_score():
@@ -53,6 +53,11 @@ screen=pygame.display.set_mode((640,480))
 pygame.display.set_caption("My_first_game")
 clock=pygame.time.Clock()
 text_font=pygame.font.Font("assets/fonts/CrotahFreeVersionItalic-z8Ev3.ttf",40)
+
+pygame.mixer.music.load("assets/sounds/back_ground_music.wav")
+jumping_sound=pygame.mixer.Sound("assets/sounds/jumping_sound_2.mp3")
+pygame.mixer.music.play(loops=-1)
+
 
 
 is_game_active=False
@@ -147,6 +152,7 @@ while True:
                 if player_rect.bottom==ground_level:
                     if event.key==pygame.K_SPACE:
                         player_gravity=-20
+                        jumping_sound.play()
                             
             elif event.type==enemy_spawn:
                 random_number=randint(0,1)
@@ -176,6 +182,8 @@ while True:
 
             
         else:
+
+            
             if event.type==pygame.KEYDOWN:
                 if event.key==pygame.K_SPACE:
                     is_game_active=True
@@ -186,6 +194,8 @@ while True:
     
 
     if is_game_active:
+        
+        
         screen.blit(sky_surface,(0,0))
         screen.blit(ground_surface,(0,410))
         global score
@@ -208,8 +218,9 @@ while True:
             player_rect.top=top_level 
 
 
-
+        
         player_movement()
+        
 
         screen.blit(player_surf,(player_rect.x,player_rect.y))
         
@@ -222,6 +233,7 @@ while True:
             
             
     else:
+        
         if start_time==0:
             screen.blit(start_screen_surface,start_screen_surface_rect)
             screen.blit(start_text,start_text_rect)
