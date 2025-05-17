@@ -3,16 +3,12 @@ import sys
 from random import randint
 
 
-
-
-
 def calculate_score():
     score=( pygame.time.get_ticks()-start_time)//100
     score_surface=text_font.render(f"Score:{score}",True,(0,0,0))
     score_surface_rect=score_surface.get_rect(center=(320,20))
     screen.blit(score_surface,score_surface_rect)
     return score
-
 
 
 def enemy_movement(enemy_list):
@@ -32,7 +28,6 @@ def enemy_movement(enemy_list):
             new_enemy_list.append((current_surf, enemy_rect))
     return new_enemy_list
 
-
             
 def player_movement():
     global player_surf,player_index,player_jump,player_rect
@@ -43,8 +38,6 @@ def player_movement():
         if player_index>=len(player_walk_list) :
             player_index=0
         player_surf=player_walk_list[int(player_index)]
-
-
 
 
 
@@ -113,9 +106,6 @@ player_rect=player_surf.get_rect(midleft=(20,400))
 player_gravity=0
 
 
-
-
-
 ground_level=420
 top_level=0
 start_time=0
@@ -178,12 +168,8 @@ while True:
                 elif skeleton_index==2:
                     skeleton_index=0
                 enemy_surface2=skeleton_list[skeleton_index]
-
-
-            
+ 
         else:
-
-            
             if event.type==pygame.KEYDOWN:
                 if event.key==pygame.K_SPACE:
                     is_game_active=True
@@ -217,8 +203,6 @@ while True:
         if player_rect.top<=top_level:
             player_rect.top=top_level 
 
-
-        
         player_movement()
         
 
@@ -230,8 +214,6 @@ while True:
                 enemy_list=[]
 
 
-            
-            
     else:
         
         if start_time==0:
