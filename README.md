@@ -1,4 +1,4 @@
-# 📚 CENG 220 Programlama Dilleri Laboratuvarı Proje Belgesi
+# 📚 CENG 220 Programlama Dilleri Laboratuvarı Proje Açıklaması
 
 ## 👨‍💻 Hazırlayanlar
 
